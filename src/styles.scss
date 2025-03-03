@@ -1,4 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
+/* Import our custom styleguide */
+@use 'app/shared/styles/index' as styleguide;
 
-/* Importing Bootstrap SCSS file. */
-@use "bootstrap/scss/bootstrap" as bootstrap;
+/* Import Bootstrap Icons */
+@use 'bootstrap-icons/font/bootstrap-icons.css' as bootstrapIcons;

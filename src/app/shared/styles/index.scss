@@ -1,0 +1,52 @@
+// Import variables first
+@use 'variables' as vars;
+
+// Import Bootstrap with variable overrides
+@use 'bootstrap/scss/bootstrap' with (
+  $primary: vars.$primary,
+  $secondary: vars.$secondary,
+  $success: vars.$success,
+  $info: vars.$info,
+  $warning: vars.$warning,
+  $danger: vars.$danger,
+  $light: vars.$light,
+  $dark: vars.$dark,
+  $font-family-base: vars.$font-family-base,
+  $border-radius: vars.$border-radius,
+  $border-radius-sm: vars.$border-radius-sm,
+  $border-radius-lg: vars.$border-radius-lg
+);
+
+// Import mixins
+@use 'mixins' as mix;
+
+// Import utilities
+@use 'utilities' as utils;
+
+// Apply global styles
+html, body {
+  font-family: vars.$font-family-base;
+  font-size: vars.$font-size-base;
+  line-height: vars.$line-height-base;
+  color: vars.$gray-900;
+  background-color: vars.$gray-100;
+  height: 100%;
+}
+
+// Consistent focus styles
+:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(vars.$primary, 0.3);
+}
+
+// Links
+a {
+  color: vars.$primary;
+  text-decoration: none;
+  @include mix.transition-base;
+  
+  &:hover {
+    color: darken(vars.$primary, 10%);
+    text-decoration: underline;
+  }
+}

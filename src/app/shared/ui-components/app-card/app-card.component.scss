@@ -1,0 +1,82 @@
+@use '../../../shared/styles/variables' as vars;
+@use '../../../shared/styles/mixins' as mix;
+
+.app-card {
+  @include mix.card;
+  border-radius: vars.$border-radius;
+  margin-bottom: vars.$spacer;
+  border: 1px solid vars.$gray-300;
+  
+  .card-header {
+    background-color: rgba(vars.$gray-200, 0.5);
+    border-bottom: 1px solid vars.$gray-300;
+    padding: vars.$spacer;
+    
+    .card-title {
+      margin-bottom: 0.25rem;
+    }
+  }
+  
+  .card-body {
+    padding: vars.$spacer;
+  }
+  
+  .card-footer {
+    background-color: rgba(vars.$gray-200, 0.5);
+    border-top: 1px solid vars.$gray-300;
+    padding: vars.$spacer;
+  }
+  
+  &.hover-effect {
+    @include mix.hover-lift;
+  }
+  
+  // Card variants
+  &.card-primary {
+    border-color: vars.$primary;
+    .card-header {
+      background-color: rgba(vars.$primary, 0.1);
+      border-color: vars.$primary;
+    }
+  }
+  
+  &.card-secondary {
+    border-color: vars.$secondary;
+    .card-header {
+      background-color: rgba(vars.$secondary, 0.1);
+      border-color: vars.$secondary;
+    }
+  }
+  
+  &.card-success {
+    border-color: vars.$success;
+    .card-header {
+      background-color: rgba(vars.$success, 0.1);
+      border-color: vars.$success;
+    }
+  }
+  
+  &.card-danger {
+    border-color: vars.$danger;
+    .card-header {
+      background-color: rgba(vars.$danger, 0.1);
+      border-color: vars.$danger;
+    }
+  }
+  
+  &.card-warning {
+    border-color: vars.$warning;
+    .card-header {
+      background-color: rgba(vars.$warning, 0.1);
+      border-color: vars.$warning;
+    }
+  }
+  
+  &.card-info {
+    border-color: vars.$info;
+    .card-header {
+      background-color: rgba(vars.$info, 0.1);
+      border-color: vars.$info;
+    }
+  }
+}

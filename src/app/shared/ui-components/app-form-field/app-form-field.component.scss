@@ -1,0 +1,31 @@
+@use '../../../shared/styles/variables' as vars;
+@use '../../../shared/styles/mixins' as mix;
+
+.app-form-field {
+  display: block;
+  margin-bottom: 1rem;
+  
+  .form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  
+  .form-control-container {
+    position: relative;
+    
+    &:focus-within {
+      ::ng-deep .form-control {
+        border-color: vars.$primary;
+        box-shadow: 0 0 0 0.2rem rgba(vars.$primary, 0.25);
+      }
+    }
+  }
+  
+  .form-text {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    color: vars.$gray-600;
+  }
+}

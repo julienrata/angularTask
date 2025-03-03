@@ -1,13 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AsyncPipe, NgClass, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, DatePipe, NgClass, NgFor, NgIf } from '@angular/common';
 import { Observable } from 'rxjs';
 import { Task } from '../../models/interfaces/task.interface';
 import { TaskService } from '../../services/task.service';
+import { 
+  AppButtonComponent, 
+  AppCardComponent, 
+  TaskStatusBadgeComponent 
+} from '../../shared/ui-components';
+import { TitleCasePipe } from '../../shared/pipes/title-case.pipe';
+
 @Component({
   selector: 'app-task-list',
   standalone: true,
-  imports: [NgFor, NgIf, NgClass, AsyncPipe, RouterModule],
+  imports: [
+    NgFor, 
+    NgIf, 
+    NgClass, 
+    AsyncPipe, 
+    RouterModule, 
+    DatePipe,
+    TitleCasePipe,
+    AppButtonComponent,
+    AppCardComponent,
+    TaskStatusBadgeComponent
+  ],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.scss',
 })
@@ -27,8 +45,24 @@ export class TaskListComponent implements OnInit {
   }
 
   deleteTask(id: number): void {
-    if (confirm('Are you sure you want to delete this task?')) {
+    if (confirm('Êtes-vous sûr de vouloir supprimer cette tâche ?')) {
       this.taskService.remove(id);
+    }
+  }
+  
+  getTaskStatus(task: Task): 'completed' | 'in-progress' | 'pending' {
+    if (task.status) {
+      return task.status;
+    }
+    return task.completed ? 'completed' : 'pending';
+  }
+  
+  getPriorityClass(priority?: string): string {
+    switch(priority) {
+      case 'high': return 'text-danger';
+      case 'medium': return 'text-warning';
+      case 'low': return 'text-info';
+      default: return '';
     }
   }
 }

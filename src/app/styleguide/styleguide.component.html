@@ -1,0 +1,349 @@
+<div class="styleguide-container">
+  <h1 class="mb-4">Styleguide</h1>
+
+  <!-- Typography -->
+  <section class="mb-5">
+    <h2 class="mb-3">Typography</h2>
+    <div class="card p-4">
+      <h1>Heading 1</h1>
+      <h2>Heading 2</h2>
+      <h3>Heading 3</h3>
+      <h4>Heading 4</h4>
+      <h5>Heading 5</h5>
+      <h6>Heading 6</h6>
+      <p>
+        This is a paragraph with <strong>bold text</strong> and
+        <em>italic text</em>.
+      </p>
+      <p class="text-muted">This is muted text.</p>
+      <p class="text-primary">Primary text</p>
+      <p class="text-secondary">Secondary text</p>
+      <p class="text-success">Success text</p>
+      <p class="text-danger">Danger text</p>
+      <p class="text-warning">Warning text</p>
+      <p class="text-info">Info text</p>
+    </div>
+  </section>
+
+  <!-- Colors -->
+  <section class="mb-5">
+    <h2 class="mb-3">Colors</h2>
+    <div class="card p-4">
+      <div class="row">
+        <div class="col-md-3 mb-3">
+          <div class="color-box bg-primary text-white p-3 rounded">Primary</div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <div class="color-box bg-secondary text-white p-3 rounded">
+            Secondary
+          </div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <div class="color-box bg-success text-white p-3 rounded">Success</div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <div class="color-box bg-danger text-white p-3 rounded">Danger</div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <div class="color-box bg-warning text-dark p-3 rounded">Warning</div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <div class="color-box bg-info text-white p-3 rounded">Info</div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <div class="color-box bg-light text-dark p-3 rounded">Light</div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <div class="color-box bg-dark text-white p-3 rounded">Dark</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Buttons -->
+  <section class="mb-5">
+    <h2 class="mb-3">Buttons</h2>
+    <div class="card p-4">
+      <h4 class="mb-3">Button Variants</h4>
+      <div class="d-flex flex-wrap gap-2 mb-4">
+        <app-button variant="primary">Primary</app-button>
+        <app-button variant="secondary">Secondary</app-button>
+        <app-button variant="success">Success</app-button>
+        <app-button variant="danger">Danger</app-button>
+        <app-button variant="warning">Warning</app-button>
+        <app-button variant="info">Info</app-button>
+        <app-button variant="light">Light</app-button>
+        <app-button variant="dark">Dark</app-button>
+        <app-button variant="link">Link</app-button>
+      </div>
+
+      <h4 class="mb-3">Button Sizes</h4>
+      <div class="d-flex flex-wrap gap-2 mb-4 align-items-center">
+        <app-button variant="primary" size="sm">Small</app-button>
+        <app-button variant="primary" size="md">Medium</app-button>
+        <app-button variant="primary" size="lg">Large</app-button>
+      </div>
+
+      <h4 class="mb-3">Button States</h4>
+      <div class="d-flex flex-wrap gap-2 mb-4">
+        <app-button variant="primary">Normal</app-button>
+        <app-button variant="primary" [disabled]="true">Disabled</app-button>
+        <app-button variant="primary" [loading]="true">Loading</app-button>
+      </div>
+
+      <h4 class="mb-3">Button with Icons</h4>
+      <div class="d-flex flex-wrap gap-2 mb-4">
+        <app-button variant="primary" iconLeft="plus">Add Task</app-button>
+        <app-button variant="success" iconRight="check">Complete</app-button>
+        <app-button variant="danger" iconLeft="trash">Delete</app-button>
+      </div>
+
+      <h4 class="mb-3">Full Width Button</h4>
+      <div class="mb-4">
+        <app-button variant="primary" [fullWidth]="true"
+          >Full Width Button</app-button
+        >
+      </div>
+    </div>
+  </section>
+
+  <!-- Cards -->
+  <section class="mb-5">
+    <h2 class="mb-3">Cards</h2>
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <app-card
+          title="Basic Card"
+          subtitle="A simple card example"
+          [elevation]="'sm'"
+        >
+          <div cardBody>
+            <p>This is a basic card with a title and subtitle.</p>
+          </div>
+        </app-card>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <app-card
+          title="Card with Variant"
+          subtitle="Using primary variant"
+          variant="primary"
+          [elevation]="'md'"
+        >
+          <div cardBody>
+            <p>This card uses the primary color variant.</p>
+          </div>
+        </app-card>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <app-card
+          title="Card with Footer"
+          [elevation]="'lg'"
+          [hover]="true"
+          variant="success"
+          footerClass="text-end"
+        >
+          <div cardBody>
+            <p>This card has a footer and hover effect.</p>
+          </div>
+          <div cardFooter>
+            <app-button variant="success" size="sm">Action</app-button>
+          </div>
+        </app-card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Badges -->
+  <section class="mb-5">
+    <h2 class="mb-3">Badges</h2>
+    <div class="card p-4">
+      <h4 class="mb-3">Badge Variants</h4>
+      <div class="d-flex flex-wrap gap-2 mb-4">
+        <app-badge variant="primary">Primary</app-badge>
+        <app-badge variant="secondary">Secondary</app-badge>
+        <app-badge variant="success">Success</app-badge>
+        <app-badge variant="danger">Danger</app-badge>
+        <app-badge variant="warning">Warning</app-badge>
+        <app-badge variant="info">Info</app-badge>
+        <app-badge variant="light">Light</app-badge>
+        <app-badge variant="dark">Dark</app-badge>
+      </div>
+
+      <h4 class="mb-3">Pill Badges</h4>
+      <div class="d-flex flex-wrap gap-2 mb-4">
+        <app-badge variant="primary" [pill]="true">Primary</app-badge>
+        <app-badge variant="secondary" [pill]="true">Secondary</app-badge>
+        <app-badge variant="success" [pill]="true">Success</app-badge>
+        <app-badge variant="danger" [pill]="true">Danger</app-badge>
+      </div>
+
+      <h4 class="mb-3">Outline Badges</h4>
+      <div class="d-flex flex-wrap gap-2 mb-4">
+        <app-badge variant="primary" [outline]="true">Primary</app-badge>
+        <app-badge variant="secondary" [outline]="true">Secondary</app-badge>
+        <app-badge variant="success" [outline]="true">Success</app-badge>
+        <app-badge variant="danger" [outline]="true">Danger</app-badge>
+      </div>
+
+      <h4 class="mb-3">Task Status Badges</h4>
+      <div class="d-flex flex-wrap gap-2 mb-4">
+        <app-task-status-badge status="completed"></app-task-status-badge>
+        <app-task-status-badge status="in-progress"></app-task-status-badge>
+        <app-task-status-badge status="pending"></app-task-status-badge>
+      </div>
+    </div>
+  </section>
+
+  <!-- Form Fields -->
+  <section class="mb-5">
+    <h2 class="mb-3">Form Fields</h2>
+    <div class="card p-4">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <app-form-field
+            label="Name"
+            [required]="true"
+            hint="Enter your full name"
+          >
+            <input type="text" class="form-control" [(ngModel)]="name" />
+          </app-form-field>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <app-form-field
+            label="Email"
+            [required]="true"
+            error="Invalid email address"
+          >
+            <input type="email" class="form-control is-invalid" />
+          </app-form-field>
+        </div>
+
+        <div class="col-12 mb-3">
+          <app-form-field
+            label="Description"
+            hint="Brief description of the task"
+          >
+            <textarea
+              class="form-control"
+              rows="3"
+              [(ngModel)]="description"
+            ></textarea>
+          </app-form-field>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <app-form-field label="Category">
+            <select class="form-select">
+              <option value="">Select a category</option>
+              <option value="work">Work</option>
+              <option value="personal">Personal</option>
+              <option value="other">Other</option>
+            </select>
+          </app-form-field>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <app-form-field label="Priority">
+            <div class="d-flex gap-3">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="priority"
+                  id="priorityLow"
+                  value="low"
+                />
+                <label class="form-check-label" for="priorityLow">Low</label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="priority"
+                  id="priorityMedium"
+                  value="medium"
+                  checked
+                />
+                <label class="form-check-label" for="priorityMedium"
+                  >Medium</label
+                >
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="priority"
+                  id="priorityHigh"
+                  value="high"
+                />
+                <label class="form-check-label" for="priorityHigh">High</label>
+              </div>
+            </div>
+          </app-form-field>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Utilities -->
+  <section class="mb-5">
+    <h2 class="mb-3">Utilities</h2>
+    <div class="card p-4">
+      <h4 class="mb-3">Spacing</h4>
+      <div class="mb-4">
+        <div class="box bg-primary p-1 text-white text-center">p-1</div>
+        <div class="box bg-primary p-2 text-white text-center mt-2">p-2</div>
+        <div class="box bg-primary p-3 text-white text-center mt-2">p-3</div>
+        <div class="box bg-primary p-4 text-white text-center mt-2">p-4</div>
+        <div class="box bg-primary p-5 text-white text-center mt-2">p-5</div>
+      </div>
+
+      <h4 class="mb-3">Border Radius</h4>
+      <div class="d-flex flex-wrap gap-3 mb-4">
+        <div class="box bg-primary p-3 text-white text-center rounded-0">
+          rounded-0
+        </div>
+        <div class="box bg-primary p-3 text-white text-center rounded-sm">
+          rounded-sm
+        </div>
+        <div class="box bg-primary p-3 text-white text-center rounded">
+          rounded
+        </div>
+        <div class="box bg-primary p-3 text-white text-center rounded-lg">
+          rounded-lg
+        </div>
+        <div class="box bg-primary p-3 text-white text-center rounded-xl">
+          rounded-xl
+        </div>
+      </div>
+
+      <h4 class="mb-3">Shadows</h4>
+      <div class="d-flex flex-wrap gap-3 mb-4">
+        <div class="box bg-white p-3 text-center shadow-none">shadow-none</div>
+        <div class="box bg-white p-3 text-center shadow-sm">shadow-sm</div>
+        <div class="box bg-white p-3 text-center shadow">shadow</div>
+        <div class="box bg-white p-3 text-center shadow-lg">shadow-lg</div>
+      </div>
+
+      <h4 class="mb-3">Flexbox</h4>
+      <div class="d-flex justify-content-between bg-light p-3 mb-3">
+        <div class="box bg-primary p-2 text-white">Item 1</div>
+        <div class="box bg-primary p-2 text-white">Item 2</div>
+        <div class="box bg-primary p-2 text-white">Item 3</div>
+      </div>
+      <div class="d-flex justify-content-center bg-light p-3 mb-3">
+        <div class="box bg-primary p-2 text-white me-2">Item 1</div>
+        <div class="box bg-primary p-2 text-white me-2">Item 2</div>
+        <div class="box bg-primary p-2 text-white">Item 3</div>
+      </div>
+      <div class="d-flex flex-column bg-light p-3">
+        <div class="box bg-primary p-2 text-white mb-2">Item 1</div>
+        <div class="box bg-primary p-2 text-white mb-2">Item 2</div>
+        <div class="box bg-primary p-2 text-white">Item 3</div>
+      </div>
+    </div>
+  </section>
+</div>

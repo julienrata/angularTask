@@ -1,0 +1,25 @@
+<div class="app-card" 
+  [ngClass]="{ 
+    'card-primary': variant === 'primary',
+    'card-secondary': variant === 'secondary',
+    'card-success': variant === 'success',
+    'card-danger': variant === 'danger',
+    'card-warning': variant === 'warning',
+    'card-info': variant === 'info',
+    'shadow-sm': elevation === 'sm',
+    'shadow': elevation === 'md',
+    'shadow-lg': elevation === 'lg',
+    'hover-effect': hover,
+    'w-100': fullWidth
+  }">
+  <div class="card-header" *ngIf="title || subtitle" [ngClass]="headerClass">
+    <h5 class="card-title" *ngIf="title">{{ title }}</h5>
+    <h6 class="card-subtitle mb-2 text-muted" *ngIf="subtitle">{{ subtitle }}</h6>
+  </div>
+  <div class="card-body" [ngClass]="bodyClass">
+    <ng-content select="[cardBody]"></ng-content>
+  </div>
+  <div class="card-footer" *ngIf="footerClass" [ngClass]="footerClass">
+    <ng-content select="[cardFooter]"></ng-content>
+  </div>
+</div>

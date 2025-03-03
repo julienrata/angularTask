@@ -7,9 +7,33 @@ import { Task } from '../models/interfaces/task.interface';
 })
 export class TaskService {
   private readonly TASKS: Task[] = [
-    { id: 1, title: 'Apprendre Angular', completed: false },
-    { id: 2, title: 'Faire les courses', completed: true },
-    { id: 3, title: 'Lire un livre', completed: false },
+    { 
+      id: 1, 
+      title: 'Apprendre Angular', 
+      completed: false,
+      status: 'in-progress',
+      description: 'Suivre le cours Angular sur Dyma et réaliser le projet de fin de formation.',
+      dueDate: new Date('2025-04-15'),
+      priority: 'high'
+    },
+    { 
+      id: 2, 
+      title: 'Faire les courses', 
+      completed: true,
+      status: 'completed',
+      description: 'Acheter des fruits, légumes, et produits d\'entretien.',
+      dueDate: new Date('2025-03-02'),
+      priority: 'medium'
+    },
+    { 
+      id: 3, 
+      title: 'Lire un livre', 
+      completed: false,
+      status: 'pending',
+      description: 'Lire "Clean Code" de Robert C. Martin.',
+      dueDate: new Date('2025-03-30'),
+      priority: 'low'
+    },
   ];
   private tasks: Task[] = [];
   private taskSubject = new BehaviorSubject<Task[]>([]);
@@ -46,11 +70,15 @@ export class TaskService {
     );
   }
 
-  public add(title: string): void {
+  public add(title: string, description?: string, priority?: 'low' | 'medium' | 'high', dueDate?: Date): void {
     const newTask: Task = {
       id: this.getLastTaskId() + 1,
       title: title,
       completed: false,
+      status: 'pending',
+      description: description,
+      priority: priority || 'medium',
+      dueDate: dueDate
     };
     const updatedTasks = [...this.taskSubject.value, newTask];
     this.tasks = updatedTasks;

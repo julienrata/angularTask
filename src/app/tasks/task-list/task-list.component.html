@@ -1,26 +1,90 @@
 <div class="task-list-container">
-  <h2>Task List</h2>
-  
-  <div class="tasks" *ngIf="(tasks$ | async) as tasks">
-    <div class="task-item" *ngFor="let task of tasks" [ngClass]="{'completed': task.completed}">
-      <div class="task-content">
-        <span class="task-title">{{ task.title }}</span>
-        <span class="task-status">{{ task.completed ? 'Completed' : 'Active' }}</span>
-      </div>
-      <div class="task-actions">
-        <button class="view-button" [routerLink]="['/tasks/details', task.id]">View</button>
-        <button class="edit-button" [routerLink]="['/tasks/edit', task.id]">Edit</button>
-        <button class="complete-button" *ngIf="!task.completed" (click)="completeTask(task.id)">Complete</button>
-        <button class="delete-button" (click)="deleteTask(task.id)">Delete</button>
-      </div>
-    </div>
-    
-    <div class="no-tasks" *ngIf="tasks.length === 0">
-      No tasks found. Add a new task to get started!
-    </div>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">Liste des tâches</h2>
+    <app-button 
+      variant="primary" 
+      [routerLink]="['/tasks/create']" 
+      iconLeft="plus-lg">
+      Nouvelle tâche
+    </app-button>
   </div>
   
-  <div class="add-task">
-    <button class="add-button" [routerLink]="['/tasks/create']">Add New Task</button>
+  <div class="tasks row" *ngIf="(tasks$ | async) as tasks">
+    <div class="col-md-6 col-lg-4 mb-4" *ngFor="let task of tasks">
+      <app-card 
+        [title]="task.title"
+        [variant]="task.completed ? 'success' : 'primary'"
+        [hover]="true"
+        footerClass="d-flex justify-content-end gap-2">
+        
+        <div cardBody>
+          <div class="d-flex justify-content-between mb-3">
+            <app-task-status-badge [status]="getTaskStatus(task)"></app-task-status-badge>
+            <span class="priority-badge" [ngClass]="getPriorityClass(task.priority)">
+              {{ task.priority || 'Medium' | appTitleCase }}
+            </span>
+          </div>
+          
+          <p class="task-description" *ngIf="task.description">{{ task.description }}</p>
+          
+          <div class="due-date mt-3" *ngIf="task.dueDate">
+            <small class="text-muted">
+              <i class="bi bi-calendar me-1"></i>
+              Échéance: {{ task.dueDate | date:'dd/MM/yyyy' }}
+            </small>
+          </div>
+        </div>
+        
+        <div cardFooter>
+          <app-button 
+            variant="info" 
+            size="sm"
+            iconLeft="eye"
+            [routerLink]="['/tasks/details', task.id]">
+            Voir
+          </app-button>
+          
+          <app-button 
+            variant="secondary" 
+            size="sm"
+            iconLeft="pencil"
+            [routerLink]="['/tasks/edit', task.id]">
+            Modifier
+          </app-button>
+          
+          <app-button 
+            variant="success" 
+            size="sm"
+            iconLeft="check-lg"
+            *ngIf="!task.completed"
+            (clicked)="completeTask(task.id)">
+            Terminer
+          </app-button>
+          
+          <app-button 
+            variant="danger" 
+            size="sm"
+            iconLeft="trash"
+            (clicked)="deleteTask(task.id)">
+            Supprimer
+          </app-button>
+        </div>
+      </app-card>
+    </div>
+    
+    <div class="col-12" *ngIf="tasks.length === 0">
+      <app-card variant="info">
+        <div cardBody class="text-center p-4">
+          <i class="bi bi-clipboard-check fs-1 text-info mb-3"></i>
+          <p class="mb-3">Aucune tâche trouvée. Créez une nouvelle tâche pour commencer !</p>
+          <app-button 
+            variant="primary" 
+            [routerLink]="['/tasks/create']" 
+            iconLeft="plus-lg">
+            Nouvelle tâche
+          </app-button>
+        </div>
+      </app-card>
+    </div>
   </div>
 </div>

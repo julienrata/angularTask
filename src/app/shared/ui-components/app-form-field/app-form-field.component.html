@@ -1,0 +1,15 @@
+<div class="app-form-field mb-3" [ngClass]="{'w-100': fullWidth}">
+  <label class="form-label" *ngIf="label">
+    {{ label }}
+    <span class="text-danger" *ngIf="required">*</span>
+  </label>
+  <div class="form-control-container">
+    <ng-content></ng-content>
+  </div>
+  <div class="form-text" *ngIf="hint && !error">
+    {{ hint }}
+  </div>
+  <div class="form-text text-danger" *ngIf="error">
+    {{ error }}
+  </div>
+</div>

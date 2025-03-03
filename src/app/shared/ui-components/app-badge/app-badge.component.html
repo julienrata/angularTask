@@ -1,0 +1,8 @@
+<span class="badge" 
+  [ngClass]="[
+    'bg-' + variant, 
+    pill ? 'rounded-pill' : '', 
+    outline ? 'badge-outline border border-' + variant : ''
+  ]">
+  <ng-content></ng-content>
+</span>

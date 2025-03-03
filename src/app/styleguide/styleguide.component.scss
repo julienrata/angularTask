@@ -1,0 +1,26 @@
+@use '../shared/styles/variables' as vars;
+@use '../shared/styles/mixins' as mix;
+
+.styleguide-container {
+  padding: 2rem 0;
+  
+  h1, h2, h3, h4 {
+    color: vars.$primary;
+  }
+  
+  section {
+    margin-bottom: 3rem;
+  }
+  
+  .color-box {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+  }
+  
+  .box {
+    min-width: 100px;
+  }
+}

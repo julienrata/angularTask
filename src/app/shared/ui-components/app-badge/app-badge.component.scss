@@ -1,0 +1,47 @@
+@use "../../../shared/styles/variables" as vars;
+@use "../../../shared/styles/mixins" as mix;
+
+:host {
+  display: inline-block;
+}
+
+.badge {
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+
+  &.badge-outline {
+    background-color: transparent !important;
+
+    &.border-primary {
+      color: vars.$primary;
+    }
+
+    &.border-secondary {
+      color: vars.$secondary;
+    }
+
+    &.border-success {
+      color: vars.$success;
+    }
+
+    &.border-danger {
+      color: vars.$danger;
+    }
+
+    &.border-warning {
+      color: vars.$warning;
+    }
+
+    &.border-info {
+      color: vars.$info;
+    }
+
+    &.border-light {
+      color: vars.$dark;
+    }
+
+    &.border-dark {
+      color: vars.$dark;
+    }
+  }
+}
