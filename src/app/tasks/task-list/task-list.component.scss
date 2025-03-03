@@ -1,0 +1,139 @@
+.task-list-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.tasks {
+  margin-bottom: 20px;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.2s;
+  
+  &:hover {
+    background-color: #f9f9f9;
+  }
+  
+  &.completed {
+    background-color: #f0f8ff;
+    
+    .task-title {
+      text-decoration: line-through;
+      color: #777;
+    }
+    
+    .task-status {
+      color: #0f9d58;
+    }
+  }
+}
+
+.task-content {
+  display: flex;
+  flex-direction: column;
+  
+  .task-title {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+  
+  .task-status {
+    font-size: 14px;
+    color: #757575;
+  }
+}
+
+.task-actions {
+  display: flex;
+  gap: 8px;
+  
+  button {
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s;
+  }
+  
+  .view-button {
+    background-color: #e0e0e0;
+    color: #333;
+    
+    &:hover {
+      background-color: #d0d0d0;
+    }
+  }
+  
+  .edit-button {
+    background-color: #4285f4;
+    color: white;
+    
+    &:hover {
+      background-color: #3367d6;
+    }
+  }
+  
+  .complete-button {
+    background-color: #0f9d58;
+    color: white;
+    
+    &:hover {
+      background-color: #0b8043;
+    }
+  }
+  
+  .delete-button {
+    background-color: #db4437;
+    color: white;
+    
+    &:hover {
+      background-color: #c53929;
+    }
+  }
+}
+
+.no-tasks {
+  padding: 20px;
+  text-align: center;
+  color: #757575;
+  font-style: italic;
+}
+
+.add-task {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  
+  .add-button {
+    background-color: #0f9d58;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    
+    &:hover {
+      background-color: #0b8043;
+    }
+  }
+}

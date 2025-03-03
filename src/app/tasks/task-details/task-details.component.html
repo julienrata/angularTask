@@ -1,0 +1,13 @@
+<div class="task-detail-container" *ngIf="task">
+  <h2>Task Details</h2>
+  <div class="task-info">
+    <p><strong>Title:</strong> {{ task.title }}</p>
+    <p><strong>Status:</strong> {{ task.completed ? 'Completed' : 'Active' }}</p>
+    <p><strong>ID:</strong> {{ task.id }}</p>
+  </div>
+  <div class="actions">
+    <button class="edit-button" (click)="navigateToEdit()">Edit Task</button>
+    <button class="complete-button" *ngIf="!task.completed" (click)="completeTask()">Mark as Complete</button>
+    <button class="delete-button" (click)="deleteTask()">Delete Task</button>
+  </div>
+</div>

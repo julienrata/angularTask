@@ -1,0 +1,36 @@
+<div class="edit-container" *ngIf="task">
+  <h2>Edit Task</h2>
+
+  <form (ngSubmit)="saveTask()">
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input
+        type="text"
+        id="title"
+        name="title"
+        [(ngModel)]="task.title"
+        (ngModelChange)="onFormChange()"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label>
+        <input
+          type="checkbox"
+          name="completed"
+          [(ngModel)]="task.completed"
+          (ngModelChange)="onFormChange()"
+        />
+        Completed
+      </label>
+    </div>
+
+    <div class="actions">
+      <button type="submit" [disabled]="!formDirty">Save</button>
+      <button type="button" (click)="cancelEdit()">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

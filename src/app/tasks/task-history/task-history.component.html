@@ -1,0 +1,58 @@
+<div class="history-container">
+  <h2>Task History</h2>
+  
+  <div class="filters-section">
+    <div class="search-box">
+      <input 
+        type="text" 
+        placeholder="Search tasks..." 
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="onSearchChange()"
+      />
+    </div>
+    
+    <div class="filter-controls">
+      <label>Filter by status:</label>
+      <select [(ngModel)]="selectedFilter" (change)="onFilterChange()">
+        <option value="all">All Tasks</option>
+        <option value="completed">Completed</option>
+        <option value="active">Active</option>
+      </select>
+      
+      <button class="clear-filters" (click)="clearFilters()">Clear Filters</button>
+    </div>
+  </div>
+  
+  <div class="task-timeline">
+    <div class="task-count" *ngIf="(filteredTasks$ | async) as tasks">
+      Showing {{ tasks.length }} task(s)
+    </div>
+    
+    <div class="timeline">
+      <ng-container *ngIf="(filteredTasks$ | async) as tasks">
+        <div class="timeline-item" *ngFor="let task of tasks" [ngClass]="{'completed': task.completed}">
+          <div class="timeline-badge" [ngClass]="{'completed': task.completed}">
+            <i class="status-icon">{{ task.completed ? '✓' : '◯' }}</i>
+          </div>
+          
+          <div class="timeline-content">
+            <div class="task-header">
+              <h3 class="task-title">{{ task.title }}</h3>
+              <span class="task-status">{{ task.completed ? 'Completed' : 'Active' }}</span>
+            </div>
+            
+            <div class="task-actions">
+              <a [routerLink]="['/tasks/details', task.id]" class="view-button">View Details</a>
+              <a [routerLink]="['/tasks/edit', task.id]" class="edit-button">Edit</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="empty-state" *ngIf="tasks.length === 0">
+          <p>No tasks found with the current filters.</p>
+          <button (click)="clearFilters()">Clear Filters</button>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
