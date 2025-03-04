@@ -1,0 +1,241 @@
+<div class="container">
+  <h1>Angular Forms Demo</h1>
+  
+  <div class="tab-buttons">
+    <button class="tab-button" [class.active]="activeTab === 'basic'" (click)="setActiveTab('basic')">Basic Forms</button>
+    <button class="tab-button" [class.active]="activeTab === 'advanced'" (click)="setActiveTab('advanced')">Advanced Forms</button>
+  </div>
+
+  <div *ngIf="activeTab === 'basic'">
+    <section>
+      <h2>Basic Form Control</h2>
+      <input [formControl]="basicControl" class="form-control">
+      <p>Current value: {{ basicControl.value }}</p>
+      <p>Valid: {{ basicControl.valid }}</p>
+    </section>
+
+  <section>
+    <h2>Simple Form Group</h2>
+    <form [formGroup]="userForm" (ngSubmit)="onUserFormSubmit()">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input id="name" formControlName="name" class="form-control">
+        <div *ngIf="userForm.get('name')?.invalid && (userForm.get('name')?.dirty || userForm.get('name')?.touched)" class="error-message">
+          <div *ngIf="userForm.get('name')?.errors?.['required']">Name is required</div>
+          <div *ngIf="userForm.get('name')?.errors?.['minlength']">Name must be at least 3 characters</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" type="email" formControlName="email" class="form-control">
+        <div *ngIf="userForm.get('email')?.invalid && (userForm.get('email')?.dirty || userForm.get('email')?.touched)" class="error-message">
+          <div *ngIf="userForm.get('email')?.errors?.['required']">Email is required</div>
+          <div *ngIf="userForm.get('email')?.errors?.['email']">Please enter a valid email</div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-secondary" (click)="resetUserForm()">Reset</button>
+      </div>
+
+      <div class="form-value">
+        <h4>Form Value:</h4>
+        <pre>{{ userForm.value | json }}</pre>
+        <h4>Form Status:</h4>
+        <p>Valid: {{ userForm.valid }}</p>
+      </div>
+    </form>
+  </section>
+
+  <section>
+    <h2>Nested Form Group</h2>
+    <form [formGroup]="profileForm" (ngSubmit)="onProfileFormSubmit()">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input id="firstName" formControlName="firstName" class="form-control">
+          <div *ngIf="profileForm.get('firstName')?.invalid && (profileForm.get('firstName')?.dirty || profileForm.get('firstName')?.touched)" class="error-message">
+            <div *ngIf="profileForm.get('firstName')?.errors?.['required']">First name is required</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input id="lastName" formControlName="lastName" class="form-control">
+          <div *ngIf="profileForm.get('lastName')?.invalid && (profileForm.get('lastName')?.dirty || profileForm.get('lastName')?.touched)" class="error-message">
+            <div *ngIf="profileForm.get('lastName')?.errors?.['required']">Last name is required</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="profileEmail">Email</label>
+        <input id="profileEmail" type="email" formControlName="email" class="form-control">
+        <div *ngIf="profileForm.get('email')?.invalid && (profileForm.get('email')?.dirty || profileForm.get('email')?.touched)" class="error-message">
+          <div *ngIf="profileForm.get('email')?.errors?.['required']">Email is required</div>
+          <div *ngIf="profileForm.get('email')?.errors?.['email']">Please enter a valid email</div>
+        </div>
+      </div>
+
+      <div formGroupName="address">
+        <h3>Address</h3>
+        
+        <div class="form-group">
+          <label for="street">Street</label>
+          <input id="street" formControlName="street" class="form-control">
+          <div *ngIf="profileForm.get('address.street')?.invalid && (profileForm.get('address.street')?.dirty || profileForm.get('address.street')?.touched)" class="error-message">
+            <div *ngIf="profileForm.get('address.street')?.errors?.['required']">Street is required</div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="city">City</label>
+            <input id="city" formControlName="city" class="form-control">
+            <div *ngIf="profileForm.get('address.city')?.invalid && (profileForm.get('address.city')?.dirty || profileForm.get('address.city')?.touched)" class="error-message">
+              <div *ngIf="profileForm.get('address.city')?.errors?.['required']">City is required</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="state">State</label>
+            <input id="state" formControlName="state" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label for="zip">Zip Code</label>
+            <input id="zip" formControlName="zip" class="form-control">
+            <div *ngIf="profileForm.get('address.zip')?.invalid && (profileForm.get('address.zip')?.dirty || profileForm.get('address.zip')?.touched)" class="error-message">
+              <div *ngIf="profileForm.get('address.zip')?.errors?.['required']">Zip code is required</div>
+              <div *ngIf="profileForm.get('address.zip')?.errors?.['pattern']">Please enter a valid US zip code (e.g., 12345 or 12345-6789)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-secondary" (click)="resetProfileForm()">Reset</button>
+      </div>
+
+      <div class="form-value">
+        <h4>Form Value:</h4>
+        <pre>{{ profileForm.value | json }}</pre>
+        <h4>Form Status:</h4>
+        <p>Valid: {{ profileForm.valid }}</p>
+      </div>
+    </form>
+  </section>
+
+  <section>
+    <h2>Form Array Example (Dynamic Form Controls)</h2>
+    <form [formGroup]="skillsForm" (ngSubmit)="onSkillsFormSubmit()">
+      <div class="form-group">
+        <label for="skillsName">Name</label>
+        <input id="skillsName" formControlName="name" class="form-control">
+        <div *ngIf="skillsForm.get('name')?.invalid && (skillsForm.get('name')?.dirty || skillsForm.get('name')?.touched)" class="error-message">
+          <div *ngIf="skillsForm.get('name')?.errors?.['required']">Name is required</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Skills</label>
+        <div formArrayName="skills">
+          <div *ngFor="let skill of skills.controls; let i = index" class="form-row skill-row">
+            <input [formControlName]="i" class="form-control">
+            <button type="button" class="btn btn-danger" (click)="removeSkill(i)">Remove</button>
+            <div *ngIf="skills.at(i).invalid && (skills.at(i).dirty || skills.at(i).touched)" class="error-message">
+              <div *ngIf="skills.at(i).errors?.['required']">Skill is required</div>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn btn-secondary" (click)="addSkill()">Add Skill</button>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-secondary" (click)="resetSkillsForm()">Reset</button>
+      </div>
+
+      <div class="form-value">
+        <h4>Form Value:</h4>
+        <pre>{{ skillsForm.value | json }}</pre>
+        <h4>Form Status:</h4>
+        <p>Valid: {{ skillsForm.valid }}</p>
+      </div>
+    </form>
+  </section>
+
+  <section>
+    <h2>Checkbox, Radio Button and Select Dropdown</h2>
+    <form [formGroup]="preferencesForm" (ngSubmit)="onPreferencesFormSubmit()">
+      <div class="form-group">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" formControlName="newsletter"> Subscribe to newsletter
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Gender</label>
+        <div class="radio">
+          <label>
+            <input type="radio" formControlName="gender" value="male"> Male
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" formControlName="gender" value="female"> Female
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" formControlName="gender" value="other"> Other
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="country">Country</label>
+        <select id="country" formControlName="country" class="form-control">
+          <option value="">-- Select Country --</option>
+          <option *ngFor="let country of countries" [value]="country.code">{{ country.name }}</option>
+        </select>
+        <div *ngIf="preferencesForm.get('country')?.invalid && (preferencesForm.get('country')?.dirty || preferencesForm.get('country')?.touched)" class="error-message">
+          <div *ngIf="preferencesForm.get('country')?.errors?.['required']">Please select a country</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Interests</label>
+        <div formArrayName="interests">
+          <div *ngFor="let interest of interests; let i = index" class="checkbox">
+            <label>
+              <input type="checkbox" [formControlName]="i"> {{ interest.name }}
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-secondary" (click)="resetPreferencesForm()">Reset</button>
+      </div>
+
+      <div class="form-value">
+        <h4>Form Value:</h4>
+        <pre>{{ preferencesForm.value | json }}</pre>
+        <h4>Form Status:</h4>
+        <p>Valid: {{ preferencesForm.valid }}</p>
+      </div>
+    </form>
+  </section>
+</div>
+
+<div *ngIf="activeTab === 'advanced'">
+  <app-advanced-form></app-advanced-form>
+</div>
+</div>

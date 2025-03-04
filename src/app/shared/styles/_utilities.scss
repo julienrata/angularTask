@@ -1,72 +1,170 @@
-@use 'variables' as vars;
-@use 'mixins' as mix;
+@use "variables" as vars;
+@use "mixins" as mix;
 
 // Text alignment
-.text-center { text-align: center; }
-.text-left { text-align: left; }
-.text-right { text-align: right; }
+.text-center {
+  text-align: center;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
 
 // Text transforms
-.text-uppercase { text-transform: uppercase; }
-.text-lowercase { text-transform: lowercase; }
-.text-capitalize { text-transform: capitalize; }
+.text-uppercase {
+  text-transform: uppercase;
+}
+.text-lowercase {
+  text-transform: lowercase;
+}
+.text-capitalize {
+  text-transform: capitalize;
+}
 
 // Text colors
-.text-primary { color: vars.$primary; }
-.text-secondary { color: vars.$secondary; }
-.text-success { color: vars.$success; }
-.text-danger { color: vars.$danger; }
-.text-warning { color: vars.$warning; }
-.text-info { color: vars.$info; }
-.text-light { color: vars.$light; }
-.text-dark { color: vars.$dark; }
-.text-muted { color: vars.$gray-600; }
+.text-primary {
+  color: vars.$primary;
+}
+.text-secondary {
+  color: vars.$secondary;
+}
+.text-success {
+  color: vars.$success;
+}
+.text-danger {
+  color: vars.$danger;
+}
+.text-warning {
+  color: vars.$warning;
+}
+.text-info {
+  color: vars.$info;
+}
+.text-light {
+  color: vars.$light;
+}
+.text-dark {
+  color: vars.$dark;
+}
+.text-muted {
+  color: vars.$gray-600;
+}
 
 // Background colors
-.bg-primary { background-color: vars.$primary; }
-.bg-secondary { background-color: vars.$secondary; }
-.bg-success { background-color: vars.$success; }
-.bg-danger { background-color: vars.$danger; }
-.bg-warning { background-color: vars.$warning; }
-.bg-info { background-color: vars.$info; }
-.bg-light { background-color: vars.$light; }
-.bg-dark { background-color: vars.$dark; }
+.bg-primary {
+  background-color: vars.$primary;
+}
+.bg-secondary {
+  background-color: vars.$secondary;
+}
+.bg-success {
+  background-color: vars.$success;
+}
+.bg-danger {
+  background-color: vars.$danger;
+}
+.bg-warning {
+  background-color: vars.$warning;
+}
+.bg-info {
+  background-color: vars.$info;
+}
+.bg-light {
+  background-color: vars.$light;
+}
+.bg-dark {
+  background-color: vars.$dark;
+}
 
 // Flex utilities
-.d-flex { display: flex; }
-.flex-row { flex-direction: row; }
-.flex-column { flex-direction: column; }
-.flex-wrap { flex-wrap: wrap; }
-.flex-nowrap { flex-wrap: nowrap; }
-.justify-content-start { justify-content: flex-start; }
-.justify-content-end { justify-content: flex-end; }
-.justify-content-center { justify-content: center; }
-.justify-content-between { justify-content: space-between; }
-.justify-content-around { justify-content: space-around; }
-.align-items-start { align-items: flex-start; }
-.align-items-end { align-items: flex-end; }
-.align-items-center { align-items: center; }
-.align-items-baseline { align-items: baseline; }
-.align-items-stretch { align-items: stretch; }
+.d-flex {
+  display: flex;
+}
+.flex-row {
+  flex-direction: row;
+}
+.flex-column {
+  flex-direction: column;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+.justify-content-start {
+  justify-content: flex-start;
+}
+.justify-content-end {
+  justify-content: flex-end;
+}
+.justify-content-center {
+  justify-content: center;
+}
+.justify-content-between {
+  justify-content: space-between;
+}
+.justify-content-around {
+  justify-content: space-around;
+}
+.align-items-start {
+  align-items: flex-start;
+}
+.align-items-end {
+  align-items: flex-end;
+}
+.align-items-center {
+  align-items: center;
+}
+.align-items-baseline {
+  align-items: baseline;
+}
+.align-items-stretch {
+  align-items: stretch;
+}
 
 // Display
-.d-none { display: none; }
-.d-inline { display: inline; }
-.d-inline-block { display: inline-block; }
-.d-block { display: block; }
+.d-none {
+  display: none;
+}
+.d-inline {
+  display: inline;
+}
+.d-inline-block {
+  display: inline-block;
+}
+.d-block {
+  display: block;
+}
 
 // Width and height
-.w-100 { width: 100%; }
-.h-100 { height: 100%; }
+.w-100 {
+  width: 100%;
+}
+.h-100 {
+  height: 100%;
+}
 
 // Spacing
 @each $prop, $abbrev in (margin: m, padding: p) {
   @each $size, $value in vars.$spacers {
-    .#{$abbrev}-#{$size} { #{$prop}: $value; }
-    .#{$abbrev}t-#{$size} { #{$prop}-top: $value; }
-    .#{$abbrev}r-#{$size} { #{$prop}-right: $value; }
-    .#{$abbrev}b-#{$size} { #{$prop}-bottom: $value; }
-    .#{$abbrev}l-#{$size} { #{$prop}-left: $value; }
+    .#{$abbrev}-#{$size} {
+      #{$prop}: $value;
+    }
+    .#{$abbrev}t-#{$size} {
+      #{$prop}-top: $value;
+    }
+    .#{$abbrev}r-#{$size} {
+      #{$prop}-right: $value;
+    }
+    .#{$abbrev}b-#{$size} {
+      #{$prop}-bottom: $value;
+    }
+    .#{$abbrev}l-#{$size} {
+      #{$prop}-left: $value;
+    }
     .#{$abbrev}x-#{$size} {
       #{$prop}-right: $value;
       #{$prop}-left: $value;
@@ -79,35 +177,77 @@
 }
 
 // Border
-.border { border: 1px solid vars.$gray-300; }
-.border-top { border-top: 1px solid vars.$gray-300; }
-.border-right { border-right: 1px solid vars.$gray-300; }
-.border-bottom { border-bottom: 1px solid vars.$gray-300; }
-.border-left { border-left: 1px solid vars.$gray-300; }
+.border {
+  border: 1px solid vars.$gray-300;
+}
+.border-top {
+  border-top: 1px solid vars.$gray-300;
+}
+.border-right {
+  border-right: 1px solid vars.$gray-300;
+}
+.border-bottom {
+  border-bottom: 1px solid vars.$gray-300;
+}
+.border-left {
+  border-left: 1px solid vars.$gray-300;
+}
 
 // Border radius
-.rounded { border-radius: vars.$border-radius; }
-.rounded-sm { border-radius: vars.$border-radius-sm; }
-.rounded-lg { border-radius: vars.$border-radius-lg; }
-.rounded-xl { border-radius: vars.$border-radius-xl; }
-.rounded-circle { border-radius: 50%; }
-.rounded-0 { border-radius: 0; }
+.rounded {
+  border-radius: vars.$border-radius;
+}
+.rounded-sm {
+  border-radius: vars.$border-radius-sm;
+}
+.rounded-lg {
+  border-radius: vars.$border-radius-lg;
+}
+.rounded-xl {
+  border-radius: vars.$border-radius-xl;
+}
+.rounded-circle {
+  border-radius: 50%;
+}
+.rounded-0 {
+  border-radius: 0;
+}
 
 // Shadow
-.shadow-sm { box-shadow: vars.$box-shadow-sm; }
-.shadow { box-shadow: vars.$box-shadow; }
-.shadow-lg { box-shadow: vars.$box-shadow-lg; }
-.shadow-none { box-shadow: none; }
+.shadow-sm {
+  box-shadow: vars.$box-shadow-sm;
+}
+.shadow {
+  box-shadow: vars.$box-shadow;
+}
+.shadow-lg {
+  box-shadow: vars.$box-shadow-lg;
+}
+.shadow-none {
+  box-shadow: none;
+}
 
 // Position
-.position-relative { position: relative; }
-.position-absolute { position: absolute; }
-.position-fixed { position: fixed; }
-.position-sticky { position: sticky; }
+.position-relative {
+  position: relative;
+}
+.position-absolute {
+  position: absolute;
+}
+.position-fixed {
+  position: fixed;
+}
+.position-sticky {
+  position: sticky;
+}
 
 // Typography
-.font-weight-normal { font-weight: vars.$font-weight-normal; }
-.font-weight-bold { font-weight: vars.$font-weight-bold; }
+.font-weight-normal {
+  font-weight: vars.$font-weight-normal;
+}
+.font-weight-bold {
+  font-weight: vars.$font-weight-bold;
+}
 
 // Task status
 .task-status-badge {
@@ -115,7 +255,10 @@
     @include mix.status-badge(rgba(vars.$success, 0.2), vars.$success);
   }
   &.in-progress {
-    @include mix.status-badge(rgba(vars.$warning, 0.2), darken(vars.$warning, 15%));
+    @include mix.status-badge(
+      rgba(vars.$warning, 0.2),
+      adjust(vars.$warning, 15%)
+    );
   }
   &.pending {
     @include mix.status-badge(rgba(vars.$info, 0.2), vars.$info);

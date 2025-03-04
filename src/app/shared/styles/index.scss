@@ -1,8 +1,8 @@
 // Import variables first
-@use 'variables' as vars;
+@use "variables" as vars;
 
 // Import Bootstrap with variable overrides
-@use 'bootstrap/scss/bootstrap' with (
+@use "bootstrap/scss/bootstrap" with (
   $primary: vars.$primary,
   $secondary: vars.$secondary,
   $success: vars.$success,
@@ -18,13 +18,14 @@
 );
 
 // Import mixins
-@use 'mixins' as mix;
+@use "mixins" as mix;
 
 // Import utilities
-@use 'utilities' as utils;
+@use "utilities" as utils;
 
 // Apply global styles
-html, body {
+html,
+body {
   font-family: vars.$font-family-base;
   font-size: vars.$font-size-base;
   line-height: vars.$line-height-base;
@@ -44,9 +45,9 @@ a {
   color: vars.$primary;
   text-decoration: none;
   @include mix.transition-base;
-  
+
   &:hover {
-    color: darken(vars.$primary, 10%);
+    color: adjust(vars.$primary, 10%);
     text-decoration: underline;
   }
 }

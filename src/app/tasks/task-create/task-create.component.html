@@ -1,1 +1,15 @@
-<p>task-edit works!</p>
+<form [formGroup]="createForm" (ngSubmit)="submit()">
+  <app-form-field>
+    <input
+      placeholder="titre"
+      type="text"
+      formControlName="title"
+      class="form-control"
+    />
+  </app-form-field>
+  <app-button type="submit" variant="primary" size="md">submit</app-button>
+</form>
+<hr />
+<div class="container">
+  <p>Value: {{ createForm.value | json }}</p>
+</div>
