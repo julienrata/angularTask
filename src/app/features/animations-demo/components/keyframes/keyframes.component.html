@@ -1,0 +1,98 @@
+<div class="animations-container">
+  <div class="section-intro">
+    <h2>Keyframes Animations</h2>
+    <p>Keyframes allow you to create complex, multi-step animations with precise timing control. Each animation below uses the keyframes API to define specific styles at specific points during the animation sequence.</p>
+  </div>
+
+  <div class="animation-example">
+    <h3>Bounce Animation</h3>
+    <p>This animation simulates a bouncing effect using multiple keyframes at different offsets.</p>
+    
+    <div class="demo-area">
+      <div 
+        [@bounce]="bounceState"
+        class="demo-box bounce-box">
+        <p>Bounce</p>
+      </div>
+    </div>
+    
+    <div class="controls">
+      <button class="btn" (click)="triggerBounce()">
+        Trigger Bounce
+      </button>
+    </div>
+    
+    <div class="code-preview">
+      <pre><code [innerText]="bounceCode"></code></pre>
+    </div>
+  </div>
+  
+  <div class="animation-example">
+    <h3>Shake Animation</h3>
+    <p>This animation creates a shaking effect by moving an element back and forth along the x-axis.</p>
+    
+    <div class="demo-area">
+      <div 
+        [@shake]="shakeState"
+        class="demo-box shake-box">
+        <p>Shake</p>
+      </div>
+    </div>
+    
+    <div class="controls">
+      <button class="btn" (click)="triggerShake()">
+        Trigger Shake
+      </button>
+    </div>
+    
+    <div class="code-preview">
+      <pre><code [innerText]="shakeCode"></code></pre>
+    </div>
+  </div>
+  
+  <div class="animation-example">
+    <h3>Pulse Animation</h3>
+    <p>This animation creates a pulsing effect by scaling an element up and down.</p>
+    
+    <div class="demo-area">
+      <div 
+        [@pulse]="pulseState"
+        class="demo-box pulse-box">
+        <p>Pulse</p>
+      </div>
+    </div>
+    
+    <div class="controls">
+      <button class="btn" (click)="triggerPulse()">
+        Trigger Pulse
+      </button>
+    </div>
+    
+    <div class="code-preview">
+      <pre><code [innerText]="pulseCode"></code></pre>
+    </div>
+  </div>
+  
+  <div class="animation-example">
+    <h3>Flash Animation</h3>
+    <p>This animation creates a flashing effect by changing the opacity at different points in time.</p>
+    
+    <div class="demo-area">
+      <div 
+        [@flash]="flashState"
+        class="demo-box flash-box">
+        <p>Flash</p>
+      </div>
+    </div>
+    
+    <div class="controls">
+      <button class="btn" (click)="triggerFlash()">
+        Trigger Flash
+      </button>
+    </div>
+    
+    <div class="code-preview">
+      <pre><code [innerText]="flashCode"></code></pre>
+    </div>
+  </div>
+</div>

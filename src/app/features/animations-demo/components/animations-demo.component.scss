@@ -1,0 +1,169 @@
+.animations-demo {
+  font-family: 'Roboto', sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  color: #333;
+}
+
+.header {
+  margin-bottom: 40px;
+  text-align: center;
+  
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #3f51b5;
+  }
+  
+  p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  .nav-section {
+    margin-top: 20px;
+    
+    .back-link {
+      display: inline-block;
+      padding: 8px 16px;
+      background-color: #3f51b5;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+      
+      &:hover {
+        background-color: darken(#3f51b5, 10%);
+      }
+    }
+  }
+}
+
+.content {
+  display: flex;
+  gap: 30px;
+  
+  .side-nav {
+    flex: 0 0 250px;
+    position: sticky;
+    top: 20px;
+    align-self: flex-start;
+    
+    .nav-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      
+      li {
+        border-bottom: 1px solid #f0f0f0;
+        
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+      
+      .nav-item {
+        display: block;
+        padding: 12px 16px;
+        color: #333;
+        text-decoration: none;
+        transition: all 0.2s;
+        
+        &:hover {
+          background-color: #f9f9f9;
+          color: #3f51b5;
+        }
+      }
+    }
+  }
+  
+  .sections-container {
+    flex: 1;
+    
+    .section {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 25px;
+      margin-bottom: 30px;
+      
+      .section-header {
+        margin-bottom: 25px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 15px;
+        
+        h2 {
+          margin-top: 0;
+          margin-bottom: 10px;
+          color: #3f51b5;
+          font-size: 1.8rem;
+        }
+        
+        p {
+          margin: 0;
+          color: #666;
+          font-size: 1.1rem;
+        }
+      }
+      
+      .explanation {
+        margin-top: 30px;
+        
+        h3 {
+          margin-top: 0;
+          color: #333;
+          font-size: 1.4rem;
+        }
+        
+        p {
+          color: #555;
+          line-height: 1.6;
+        }
+        
+        .code-example {
+          margin: 20px 0;
+          
+          h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #555;
+            font-size: 1.1rem;
+          }
+          
+          pre {
+            background-color: #282c34;
+            border-radius: 6px;
+            padding: 15px;
+            overflow-x: auto;
+            
+            code {
+              color: #abb2bf;
+              font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', monospace;
+              font-size: 14px;
+              line-height: 1.5;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Responsive styling
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    
+    .side-nav {
+      position: static;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  }
+}

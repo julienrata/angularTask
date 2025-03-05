@@ -7,7 +7,7 @@ import { AppBadgeComponent } from '../app-badge/app-badge.component';
   standalone: true,
   imports: [CommonModule, AppBadgeComponent],
   templateUrl: './task-status-badge.component.html',
-  styleUrls: ['./task-status-badge.component.scss']
+  styleUrl: './task-status-badge.component.scss'
 })
 export class TaskStatusBadgeComponent {
   @Input() status: 'completed' | 'in-progress' | 'pending' = 'pending';

@@ -1,0 +1,109 @@
+.animations-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.animation-example {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  
+  h3 {
+    margin-top: 0;
+    color: #3f51b5;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    color: #666;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+  }
+}
+
+.demo-box {
+  margin: 15px 0;
+  overflow: hidden;
+  transition: all 0.3s;
+  
+  p {
+    margin: 0 0 10px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.fade-box {
+  background-color: #3f51b5;
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  p {
+    color: white;
+    margin: 0;
+    text-align: center;
+  }
+}
+
+.scale-box {
+  background-color: #ff4081;
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  p {
+    color: white;
+    margin: 0;
+    text-align: center;
+  }
+}
+
+.controls {
+  margin: 15px 0;
+  
+  .btn {
+    background-color: #3f51b5;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+    
+    &:hover {
+      background-color: darken(#3f51b5, 10%);
+    }
+  }
+}
+
+.code-preview {
+  margin-top: 15px;
+  
+  pre {
+    background-color: #282c34;
+    border-radius: 4px;
+    padding: 12px;
+    overflow-x: auto;
+    margin: 0;
+    font-size: 0.8rem;
+    
+    code {
+      color: #abb2bf;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', monospace;
+    }
+  }
+}

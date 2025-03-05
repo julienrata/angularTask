@@ -1,0 +1,69 @@
+<div class="animations-container">
+  <div class="animation-example">
+    <h3>Enter/Leave Animations</h3>
+    <p>
+      This example demonstrates void state transitions for elements entering and
+      leaving the DOM.
+    </p>
+
+    <div class="demo-area">
+      <div *ngIf="showElement" [@enterLeave] class="demo-box enter-leave-box">
+        <p>This element animates when entering or leaving the DOM</p>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="btn" (click)="toggleElement()">
+        {{ showElement ? "Remove" : "Add" }} Element
+      </button>
+    </div>
+
+    <div class="code-preview">
+      <pre><code [innerText]="enterLeaveAnimation"></code></pre>
+    </div>
+  </div>
+
+  <div class="animation-example">
+    <h3>Traffic Light Animation</h3>
+    <p>
+      This example shows multi-state transitions with different timing for each
+      state change.
+    </p>
+
+    <div class="demo-area">
+      <div [@trafficLight]="trafficLightState" class="demo-box traffic-light">
+        <p>Current state: {{ trafficLightState }}</p>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="btn" (click)="changeTrafficLight()">Change Light</button>
+    </div>
+
+    <div class="code-preview">
+      <pre><code [innerHTML]="trafficLightState"></code></pre>
+    </div>
+  </div>
+
+  <div class="animation-example">
+    <h3>Wildcard Transitions</h3>
+    <p>
+      This example demonstrates wildcard state transitions that can match any
+      state.
+    </p>
+
+    <div class="demo-area">
+      <div [@wildcard]="wildcardState" class="demo-box wildcard-box">
+        <p>Current state: {{ wildcardState }}</p>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="btn" (click)="toggleWildcardState()">Change State</button>
+    </div>
+
+    <div class="code-preview">
+      <pre><code [innerText]="wildAnimation"></code></pre>
+    </div>
+  </div>
+</div>

@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './app-form-field.component.html',
-  styleUrls: ['./app-form-field.component.scss']
+  styleUrl: './app-form-field.component.scss'
 })
 export class AppFormFieldComponent {
   @Input() label = '';

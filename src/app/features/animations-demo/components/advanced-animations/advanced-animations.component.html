@@ -1,0 +1,91 @@
+<div class="animations-container">
+  <div class="section-intro">
+    <h2>Advanced Animations</h2>
+    <p>
+      Advanced animations demonstrate complex techniques like parent-child
+      choreography, parallel animations, and animation sequences. These
+      techniques can create sophisticated and visually impressive interactions.
+    </p>
+  </div>
+
+  <div class="animation-example">
+    <h3>Parent-Child Animations</h3>
+    <p>
+      This example demonstrates how to coordinate animations between parent and
+      child elements using <code>query()</code> and <code>animateChild()</code>.
+    </p>
+
+    <div class="demo-area">
+      <div *ngIf="showParent" [@parentAnimation] class="parent-container">
+        <h4>Parent Element</h4>
+        <div [@childAnimation] class="child-element">
+          <p>Child Element 1</p>
+        </div>
+        <div [@childAnimation] class="child-element">
+          <p>Child Element 2</p>
+        </div>
+        <div [@childAnimation] class="child-element">
+          <p>Child Element 3</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="btn" (click)="toggleParent()">
+        {{ showParent ? "Remove" : "Add" }} Parent Container
+      </button>
+    </div>
+
+    <div class="code-preview">
+      <pre><code [innerText]="parentAnimation"></code></pre>
+    </div>
+  </div>
+
+  <div class="animation-example">
+    <h3>Parallel Animations with Group</h3>
+    <p>
+      This example shows how to run multiple animations in parallel using the
+      <code>group()</code> function with different durations.
+    </p>
+
+    <div class="demo-area">
+      <div [@parallelAnimation]="parallelState" class="parallel-box">
+        <p>Parallel Animations</p>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="btn" (click)="toggleParallelAnimation()">
+        Toggle Animation State
+      </button>
+    </div>
+
+    <div class="code-preview">
+      <pre><code [innerText]="animation"></code></pre>
+    </div>
+  </div>
+
+  <div class="animation-example">
+    <h3>Complex Animation Sequence</h3>
+    <p>
+      This example demonstrates a complex sequence of animations that play one
+      after another.
+    </p>
+
+    <div class="demo-area">
+      <div [@sequenceAnimation]="sequenceState" class="sequence-box">
+        <p>Sequence Animation</p>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="btn" (click)="startSequenceAnimation()">
+        Start Sequence
+      </button>
+    </div>
+
+    <div class="code-preview">
+      <pre><code [innerText]="sequenceAnimation"></code></pre>
+    </div>
+  </div>
+</div>

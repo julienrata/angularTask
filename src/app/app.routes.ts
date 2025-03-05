@@ -6,6 +6,12 @@ import { StyleguideComponent } from './features/styleguide/components/styleguide
 import { AuthGuard } from './core';
 import { PipesDemoComponent } from './features/pipes-demo';
 import { FormsDemoComponent } from './features/forms-demo';
+import { AnimationsDemoComponent } from './features/animations-demo/components/animations-demo.component';
+import { BasicAnimationsComponent } from './features/animations-demo/components/basic-animations/basic-animations.component';
+import { TransitionsComponent } from './features/animations-demo/components/transitions/transitions.component';
+import { AdvancedAnimationsComponent } from './features/animations-demo/components/advanced-animations/advanced-animations.component';
+import { KeyframesComponent } from './features/animations-demo/components/keyframes/keyframes.component';
+import { StaggerComponent } from './features/animations-demo/components/stagger/stagger.component';
 
 export const routes: Routes = [
   {
@@ -34,6 +40,18 @@ export const routes: Routes = [
     path: 'pipes-demo',
     component: PipesDemoComponent,
     title: 'Angular Pipes Demo',
+  },
+  {
+    path: 'animations-demo',
+    component: AnimationsDemoComponent,
+    title: 'Angular Animations Demo',
+    children: [
+      { path: 'basic', component: BasicAnimationsComponent },
+      { path: 'transitions', component: TransitionsComponent },
+      { path: 'advanced', component: AdvancedAnimationsComponent },
+      { path: 'keyframes', component: KeyframesComponent },
+      { path: 'stagger', component: StaggerComponent }
+    ]
   },
   {
     path: 'styleguide',

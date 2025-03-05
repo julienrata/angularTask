@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './app-badge.component.html',
-  styleUrls: ['./app-badge.component.scss']
+  styleUrl: './app-badge.component.scss'
 })
 export class AppBadgeComponent {
   @Input() variant: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' = 'primary';

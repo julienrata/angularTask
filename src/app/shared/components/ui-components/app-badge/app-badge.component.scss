@@ -1,5 +1,5 @@
-@use "../../../shared/styles/variables" as vars;
-@use "../../../shared/styles/mixins" as mix;
+@use "../../../../shared/styles/variables" as vars;
+@use "../../../../shared/styles/mixins" as mix;
 
 :host {
   display: inline-block;

@@ -1,0 +1,144 @@
+<div class="animations-demo">
+  <div class="header">
+    <h1>Angular 19 Animations</h1>
+    <p>Learn how to use Angular's powerful animation system with practical examples</p>
+    <div class="nav-section">
+      <a routerLink="/" class="back-link">Back to Home</a>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="side-nav">
+      <ul class="nav-list">
+        @for (section of sections; track section.id) {
+          <li>
+            <a 
+              [routerLink]="['/animations-demo', section.id]"
+              class="nav-item"
+              routerLinkActive="active">
+              {{section.title}}
+            </a>
+          </li>
+        }
+      </ul>
+    </div>
+
+    <div class="sections-container">
+      <ng-container *ngIf="isRouterOutletActive; else mainContent">
+        <router-outlet></router-outlet>
+      </ng-container>
+      
+      <ng-template #mainContent>
+        <!-- Basic Animations -->
+        <section id="basic" class="section">
+          <div class="section-header">
+            <h2>Basic Animations</h2>
+            <p>Simple property and state animations in Angular</p>
+          </div>
+          
+          <app-basic-animations></app-basic-animations>
+          
+          <div class="explanation">
+            <h3>How It Works</h3>
+            <p>Angular's animation system is built on top of the Web Animations API and provides a DSL (Domain Specific Language) to define transitions between states.</p>
+            
+            <div class="code-example">
+              <h4>Importing Animation Modules</h4>
+              <pre><code [innerText]="importCode"></code></pre>
+            </div>
+            
+            <div class="code-example">
+              <h4>Defining Animations</h4>
+              <pre><code [innerText]="basicAnimationCode"></code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Transitions -->
+        <section id="transitions" class="section">
+          <div class="section-header">
+            <h2>Transitions</h2>
+            <p>Control how elements animate between different states</p>
+          </div>
+          
+          <app-transitions></app-transitions>
+          
+          <div class="explanation">
+            <h3>Understanding Transitions</h3>
+            <p>Transitions define how animations play when elements change from one state to another.</p>
+            
+            <div class="code-example">
+              <h4>Transition Syntax</h4>
+              <pre><code [innerText]="transitionCode"></code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Advanced Animations -->
+        <section id="advanced" class="section">
+          <div class="section-header">
+            <h2>Advanced Animations</h2>
+            <p>Complex animations with multiple elements and coordinated timing</p>
+          </div>
+          
+          <app-advanced-animations></app-advanced-animations>
+          
+          <div class="explanation">
+            <h3>Advanced Techniques</h3>
+            <p>Angular allows you to create complex animations with multiple elements, parallel animations, and more.</p>
+            
+            <div class="code-example">
+              <h4>Animation Groups</h4>
+              <pre><code [innerText]="groupCode"></code></pre>
+            </div>
+            
+            <div class="code-example">
+              <h4>Animation Sequences</h4>
+              <pre><code [innerText]="sequenceCode"></code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Keyframes -->
+        <section id="keyframes" class="section">
+          <div class="section-header">
+            <h2>Keyframes</h2>
+            <p>Create multi-step animations with precise timing control</p>
+          </div>
+          
+          <app-keyframes></app-keyframes>
+          
+          <div class="explanation">
+            <h3>Using Keyframes</h3>
+            <p>Keyframes allow you to define multiple style steps within a single animation, with precise control over timing.</p>
+            
+            <div class="code-example">
+              <h4>Keyframe Animation</h4>
+              <pre><code [innerText]="keyframeCode"></code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Staggered Animations -->
+        <section id="stagger" class="section">
+          <div class="section-header">
+            <h2>Staggered Animations</h2>
+            <p>Animate lists with sequenced timing for a wave effect</p>
+          </div>
+          
+          <app-stagger></app-stagger>
+          
+          <div class="explanation">
+            <h3>Creating Staggered Effects</h3>
+            <p>Staggered animations are perfect for lists, where you want each item to animate with a slight delay after the previous one.</p>
+            
+            <div class="code-example">
+              <h4>Stagger Function</h4>
+              <pre><code [innerText]="staggerCode"></code></pre>
+            </div>
+          </div>
+        </section>
+      </ng-template>
+    </div>
+  </div>
+</div>

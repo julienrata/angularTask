@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './app-button.component.html',
-  styleUrls: ['./app-button.component.scss']
+  styleUrl: './app-button.component.scss'
 })
 export class AppButtonComponent {
   @Input() variant: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' | 'link' = 'primary';

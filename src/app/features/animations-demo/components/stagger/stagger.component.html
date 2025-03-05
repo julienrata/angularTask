@@ -1,0 +1,97 @@
+<div class="animations-container">
+  <div class="section-intro">
+    <h2>Staggered Animations</h2>
+    <p>
+      Staggered animations allow you to create dynamic effects where multiple
+      elements animate with a delay sequence. This creates a visually appealing
+      flow when elements enter or leave the DOM.
+    </p>
+  </div>
+
+  <div class="animation-example">
+    <h3>List Stagger Animation</h3>
+    <p>
+      This example shows how to animate list items with a staggered effect when
+      adding or removing items.
+    </p>
+
+    <div class="demo-area list-demo">
+      <ul [@listAnimation]="listItems.length">
+        <li *ngFor="let item of listItems" class="list-item">
+          {{ item }}
+        </li>
+      </ul>
+    </div>
+
+    <div class="controls">
+      <button class="btn" (click)="addListItem()">Add Item</button>
+      <button class="btn btn-secondary" (click)="removeListItem()">
+        Remove Item
+      </button>
+    </div>
+
+    <div class="code-preview">
+      <pre><code [innerText]="listAnimation"></code></pre>
+    </div>
+  </div>
+
+  <div class="animation-example">
+    <h3>Grid Stagger Animation</h3>
+    <p>This example demonstrates staggered animations for a grid of items.</p>
+
+    <div class="demo-area">
+      <div class="grid-container" [@gridAnimation]="gridItems.length">
+        <div *ngFor="let item of gridItems" class="grid-item">
+          {{ item }}
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="btn" (click)="toggleGridItems()">
+        {{ gridItems.length ? "Hide Grid" : "Show Grid" }}
+      </button>
+    </div>
+
+    <div class="code-preview">
+      <pre><code [innerText]="gridAnimation"></code></pre>
+    </div>
+  </div>
+
+  <div class="animation-example">
+    <h3>Ripple Stagger Animation</h3>
+    <p>
+      This demonstrates a circular ripple effect using staggered animations
+      triggered by a button click.
+    </p>
+
+    <div class="demo-area">
+      <div class="ripple-container" [@rippleAnimation]="rippleItems.length">
+        <div
+          *ngFor="let item of rippleItems"
+          class="ripple-item"
+          [style.width.px]="50 + item * 30"
+          [style.height.px]="50 + item * 30"
+        ></div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="btn" (click)="triggerRipple()">Trigger Ripple</button>
+      <div class="slider-control">
+        <label for="ripple-count">Ripple count: {{ rippleCount }}</label>
+        <input
+          type="range"
+          id="ripple-count"
+          min="1"
+          max="10"
+          [(ngModel)]="rippleCount"
+        />
+      </div>
+    </div>
+
+    <div class="code-preview">
+      <pre><code [innerText]="rippleAnimation"></code></pre>
+    </div>
+  </div>
+</div>

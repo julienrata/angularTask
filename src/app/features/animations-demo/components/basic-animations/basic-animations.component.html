@@ -1,0 +1,65 @@
+<div class="animations-container">
+  <div class="animation-example">
+    <h3>Open/Close Animation</h3>
+    <p>This example demonstrates a state-based animation that changes height and color.</p>
+    
+    <div 
+      [@openClose]="isOpen ? 'open' : 'closed'"
+      class="demo-box">
+      <p>This box has two states: open and closed.</p>
+      <p *ngIf="isOpen">This content only appears in the open state!</p>
+    </div>
+    
+    <div class="controls">
+      <button class="btn" (click)="toggle()">
+        {{ isOpen ? 'Close' : 'Open' }}
+      </button>
+    </div>
+    
+    <div class="code-preview">
+      <pre><code [innerText]="openCloseCode"></code></pre>
+    </div>
+  </div>
+  
+  <div class="animation-example">
+    <h3>Fade Animation</h3>
+    <p>This example shows a simple opacity transition.</p>
+    
+    <div 
+      [@fade]="isVisible ? 'visible' : 'invisible'"
+      class="demo-box fade-box">
+      <p>This content fades in and out.</p>
+    </div>
+    
+    <div class="controls">
+      <button class="btn" (click)="toggleVisibility()">
+        {{ isVisible ? 'Hide' : 'Show' }}
+      </button>
+    </div>
+    
+    <div class="code-preview">
+      <pre><code [innerText]="fadeCode"></code></pre>
+    </div>
+  </div>
+  
+  <div class="animation-example">
+    <h3>Scale Animation</h3>
+    <p>This example demonstrates CSS transform animations.</p>
+    
+    <div 
+      [@scale]="isEnlarged ? 'enlarged' : 'normal'"
+      class="demo-box scale-box">
+      <p>This box scales up and down.</p>
+    </div>
+    
+    <div class="controls">
+      <button class="btn" (click)="toggleSize()">
+        {{ isEnlarged ? 'Shrink' : 'Enlarge' }}
+      </button>
+    </div>
+    
+    <div class="code-preview">
+      <pre><code [innerText]="scaleCode"></code></pre>
+    </div>
+  </div>
+</div>
