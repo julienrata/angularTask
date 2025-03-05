@@ -1,0 +1,306 @@
+<div class="container">
+  <div class="header">
+    <h1>Advanced HTTP in Angular</h1>
+    <p>
+      This demo shows advanced HTTP features, error handling, interceptors, and
+      RxJS operators
+    </p>
+
+    <div class="tabs">
+      <a routerLink="/http-demo/basics" class="tab">Basic HTTP</a>
+      <a routerLink="/http-demo/advanced" class="tab active">Advanced HTTP</a>
+    </div>
+  </div>
+
+  <!-- Global loader from interceptor -->
+  <div *ngIf="loaderService.loading$ | async" class="global-loader">
+    <div class="spinner"></div>
+    <span>Loading...</span>
+  </div>
+
+  <!-- Error display -->
+  <div *ngIf="simulatedError" class="error-banner">
+    <strong>Error:</strong> {{ simulatedError }}
+    <button class="btn-close" (click)="clearErrors()">×</button>
+  </div>
+
+  <div class="content">
+    <div class="main-content">
+      <section class="card">
+        <h2>Pagination Example</h2>
+        <p>
+          Demonstrates using HttpParams for query parameters and the observe:
+          'response' option to access headers
+        </p>
+
+        <div class="posts-container">
+          <!-- Loading indicator -->
+          <div *ngIf="isLoading" class="section-loader">
+            <div class="spinner"></div>
+          </div>
+
+          <!-- Posts list -->
+          <div *ngIf="posts.length > 0 && !isLoading" class="post-list">
+            <div
+              *ngFor="let post of posts"
+              class="post-item"
+              (click)="getPost(post.id)"
+            >
+              <h3>{{ post.title }}</h3>
+              <p>
+                {{ post.body | slice : 0 : 100
+                }}{{ post.body && post.body.length > 100 ? "..." : "" }}
+              </p>
+            </div>
+          </div>
+
+          <!-- Pagination controls -->
+          <div class="pagination">
+            <button
+              [disabled]="currentPage === 1"
+              class="btn-sm"
+              (click)="changePage(currentPage - 1)"
+            >
+              Previous
+            </button>
+            <span
+              >Page {{ currentPage }} of
+              {{ totalItems ? Math.ceil(totalItems / pageSize) : 1 }}</span
+            >
+            <button
+              [disabled]="!posts.length || posts.length < pageSize"
+              class="btn-sm"
+              (click)="changePage(currentPage + 1)"
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Selected Post</h2>
+        <p>
+          Shows cache mechanism in action. Requesting the same post multiple
+          times will use the cached response.
+        </p>
+
+        <div *ngIf="selectedPost" class="selected-post">
+          <h3>{{ selectedPost.title }}</h3>
+          <p>{{ selectedPost.body }}</p>
+          <div class="meta">
+            <strong>ID:</strong> {{ selectedPost.id }} |
+            <strong>User ID:</strong> {{ selectedPost.userId }}
+          </div>
+        </div>
+
+        <div *ngIf="!selectedPost && !isLoading" class="placeholder">
+          <p>
+            Select a post from the list above or enter an ID to load a specific
+            post
+          </p>
+          <div class="form-inline">
+            <input
+              type="number"
+              [(ngModel)]="postIdToLoad"
+              placeholder="Post ID (1-100)"
+              min="1"
+              max="100"
+            />
+            <button class="btn" (click)="getPost(postIdToLoad)">
+              Load Post
+            </button>
+          </div>
+        </div>
+
+        <button class="btn-sm" (click)="clearCache()">Clear Cache</button>
+        <p class="info-text">
+          After clearing the cache, loading the same post will trigger a new
+          HTTP request
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>Error Handling</h2>
+        <p>
+          Demonstrates centralized error handling with HTTP error responses and
+          retry logic
+        </p>
+
+        <div class="error-actions">
+          <button class="btn" (click)="simulateError()">
+            Simulate HTTP Error
+          </button>
+          <button class="btn" (click)="simulateRetry()">
+            Simulate Retry (3x)
+          </button>
+        </div>
+
+        <div class="code-example">
+          <h3>Error Handling Process:</h3>
+          <pre>
+// 1. Service uses centralized error handler
+return this.http.get&lt;T&gt;(url).pipe(
+  catchError(this.handleError)
+);
+
+// 2. Component subscribes and handles errors
+service.getData().subscribe({{ "{" }}
+  next: (data) => {{ "{" }} ... {{ "}" }},
+  error: (error) => this.errorHandler.handleHttpError(error)
+{{ "}" }});
+
+// 3. Error interceptor could also handle errors globally
+intercept(req, next) {{ "{" }}
+  return next.handle(req).pipe(
+    catchError(error => {{ "{" }}
+      if (error instanceof HttpErrorResponse) {{ "{" }}
+        // Global error handling logic
+        this.errorService.handleError(error);
+      {{ "}" }}
+      return throwError(() => error);
+    {{ "}" }})
+  );
+{{ "}" }}
+          </pre>
+        </div>
+      </section>
+    </div>
+
+    <div class="sidebar">
+      <section class="card">
+        <h2>Interceptors</h2>
+        <p>This demo uses several HTTP interceptors:</p>
+        <ul class="interceptor-list">
+          <li>
+            <strong>Auth Interceptor</strong>
+            <p>Adds an Authorization header to all requests</p>
+            <span class="code">Bearer token-example</span>
+          </li>
+          <li>
+            <strong>Logging Interceptor</strong>
+            <p>
+              Logs all HTTP requests with timing information (check console)
+            </p>
+          </li>
+          <li>
+            <strong>Cache Interceptor</strong>
+            <p>Caches GET requests for improved performance</p>
+          </li>
+          <li>
+            <strong>Loader Interceptor</strong>
+            <p>Shows/hides global loading indicator during requests</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Batch Requests</h2>
+        <p>Uses forkJoin to execute multiple HTTP requests in parallel</p>
+
+        <div class="user-ids">
+          <label>User IDs to fetch:</label>
+          <div class="checkboxes">
+            <label *ngFor="let id of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]">
+              <input
+                type="checkbox"
+                [checked]="userIds.includes(id)"
+                (change)="updateUserIds(id, $event)"
+              />
+              {{ id }}
+            </label>
+          </div>
+        </div>
+
+        <button class="btn" (click)="batchGetUsers()">
+          Fetch Users in Parallel
+        </button>
+
+        <div *ngIf="batchResults.length > 0" class="results">
+          <h3>Results ({{ batchResults.length }} users):</h3>
+          <div class="users-list">
+            <div *ngFor="let user of batchResults" class="user-item">
+              <h4>{{ user.name }}</h4>
+              <p>{{ user.email }}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Request Cancellation</h2>
+        <p>Demonstrates cancelling in-flight HTTP requests using takeUntil</p>
+
+        <button class="btn" (click)="demonstrateCancellation()">
+          Start 5s Request (Auto-cancels after 3s)
+        </button>
+
+        <div *ngIf="isRequestCanceled" class="cancellation-result">
+          <p>✓ Request was successfully cancelled!</p>
+          <p class="info-text">Check the console for the log messages</p>
+        </div>
+
+        <div class="code-example">
+          <h3>Cancellation Technique:</h3>
+          <pre>
+// Create a subject for cancellation
+const cancelRequest$ = new Subject&lt;void&gt;();
+
+// Use takeUntil to cancel the request when the subject emits
+http.get&lt;Data&gt;(url).pipe(
+  takeUntil(cancelRequest$)
+).subscribe({{ "{" }}
+  next: (data) => {{ "{" }} ... {{ "}" }},
+  error: (err) => {{ "{" }} ... {{ "}" }}
+{{ "}" }});
+
+// Later, to cancel the request:
+cancelRequest$.next();
+cancelRequest$.complete();
+          </pre>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="footer">
+    <h2>Key Concepts</h2>
+    <div class="concepts">
+      <div class="concept-column">
+        <h3>Request Configuration</h3>
+        <ul>
+          <li><strong>HttpParams</strong> - For URL parameters</li>
+          <li><strong>HttpHeaders</strong> - For custom headers</li>
+          <li><strong>observe</strong> - Full response vs body-only</li>
+          <li><strong>responseType</strong> - Type of expected response</li>
+          <li>
+            <strong>reportProgress</strong> - For upload/download progress
+          </li>
+        </ul>
+      </div>
+      <div class="concept-column">
+        <h3>RxJS Operators</h3>
+        <ul>
+          <li><strong>catchError</strong> - Handle errors</li>
+          <li><strong>retry</strong> - Automatically retry failed requests</li>
+          <li><strong>timeout</strong> - Abort if request takes too long</li>
+          <li><strong>map</strong> - Transform response data</li>
+          <li><strong>switchMap</strong> - Chain dependent requests</li>
+          <li><strong>forkJoin</strong> - Parallel requests</li>
+          <li><strong>takeUntil</strong> - Cancel in-flight requests</li>
+        </ul>
+      </div>
+      <div class="concept-column">
+        <h3>Interceptors</h3>
+        <ul>
+          <li><strong>Authentication</strong> - Add auth headers</li>
+          <li><strong>Caching</strong> - Cache responses</li>
+          <li><strong>Logging</strong> - Log requests/responses</li>
+          <li><strong>Error Handling</strong> - Centralized error handling</li>
+          <li><strong>Loading</strong> - Manage loading indicators</li>
+          <li><strong>Retry</strong> - Auto-retry failed requests</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

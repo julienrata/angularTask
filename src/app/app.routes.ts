@@ -3,6 +3,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthGuard } from './guards/auth.guard';
 import { StyleguideComponent } from './styleguide/styleguide.component';
 import { FormsDemoComponent } from './forms-demo/forms-demo.component';
+import { PipesDemoComponent } from './pipes-demo/pipes-demo.component';
 
 export const routes: Routes = [
   {
@@ -19,6 +20,16 @@ export const routes: Routes = [
     path: 'forms-demo',
     component: FormsDemoComponent,
     title: 'Angular Forms Demo',
+  },
+  {
+    path: 'http-demo',
+    loadChildren: () => import('./http-demo/http-demo.module').then(m => m.HttpDemoModule),
+    title: 'HTTP Demo',
+  },
+  {
+    path: 'pipes-demo',
+    component: PipesDemoComponent,
+    title: 'Angular Pipes Demo',
   },
   {
     path: 'styleguide',
