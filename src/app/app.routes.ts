@@ -1,9 +1,11 @@
 import { Routes } from '@angular/router';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { AuthGuard } from './guards/auth.guard';
-import { StyleguideComponent } from './styleguide/styleguide.component';
-import { FormsDemoComponent } from './forms-demo/forms-demo.component';
-import { PipesDemoComponent } from './pipes-demo/pipes-demo.component';
+import { NotFoundComponent } from './shared/components/not-found/not-found.component';
+import { StyleguideComponent } from './features/styleguide/components/styleguide.component';
+
+// Import from feature barrels
+import { AuthGuard } from './core';
+import { PipesDemoComponent } from './features/pipes-demo';
+import { FormsDemoComponent } from './features/forms-demo';
 
 export const routes: Routes = [
   {
@@ -11,20 +13,22 @@ export const routes: Routes = [
     redirectTo: 'tasks',
     pathMatch: 'full',
   },
+  // Lazy loaded features
   {
     path: 'tasks',
-    loadChildren: () => import('./tasks/task.routes').then((m) => m.taskRoutes),
+    loadChildren: () => import('./features/tasks').then(m => m.taskRoutes),
     canActivate: [AuthGuard],
   },
+  {
+    path: 'http-demo',
+    loadChildren: () => import('./features/http-demo').then(m => m.HttpDemoModule),
+    title: 'HTTP Demo',
+  },
+  // Direct component routes
   {
     path: 'forms-demo',
     component: FormsDemoComponent,
     title: 'Angular Forms Demo',
-  },
-  {
-    path: 'http-demo',
-    loadChildren: () => import('./http-demo/http-demo.module').then(m => m.HttpDemoModule),
-    title: 'HTTP Demo',
   },
   {
     path: 'pipes-demo',

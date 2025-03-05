@@ -1,0 +1,289 @@
+<div class="pipes-demo">
+  <div class="header">
+    <h1>Angular Pipes Tutorial</h1>
+    <p>Learn about built-in and custom pipes in Angular</p>
+    <a routerLink="/">Back to Home</a>
+  </div>
+
+  <div class="content">
+    <!-- Built-in Pipes -->
+    <section class="section">
+      <h2>1. Built-in Pipes</h2>
+      <p class="description">
+        Angular provides several built-in pipes for common data transformations.
+      </p>
+
+      <div class="example-container">
+        <h3>String Pipes</h3>
+        <div class="example">
+          <div class="code">{{ "message | uppercase" }}</div>
+          <div class="result">{{ message | uppercase }}</div>
+        </div>
+
+        <div class="example">
+          <div class="code">{{ "message | lowercase" }}</div>
+          <div class="result">{{ message | lowercase }}</div>
+        </div>
+
+        <div class="example">
+          <div class="code">{{ "message | titlecase" }}</div>
+          <div class="result">{{ message | titlecase }}</div>
+        </div>
+
+        <div class="example">
+          <div class="code">{{ "longText | slice:0:20" }}</div>
+          <div class="result">{{ longText | slice : 0 : 20 }}...</div>
+        </div>
+      </div>
+
+      <div class="example-container">
+        <h3>Number and Currency Pipes</h3>
+        <div class="example">
+          <div class="code">{{ "price | number" }}</div>
+          <div class="result">{{ price | number }}</div>
+        </div>
+
+        <div class="example">
+          <div class="code">{{ 'price | number:"1.2-2"' }}</div>
+          <div class="result">{{ price | number : "1.2-2" }}</div>
+        </div>
+
+        <div class="example">
+          <div class="code">{{ "price | currency" }}</div>
+          <div class="result">{{ price | currency }}</div>
+        </div>
+
+        <div class="example">
+          <div class="code">{{ 'price | currency:"EUR"' }}</div>
+          <div class="result">{{ price | currency : "EUR" }}</div>
+        </div>
+      </div>
+
+      <div class="example-container">
+        <h3>Date Pipes</h3>
+        <div class="example">
+          <div class="code">{{ "currentDate | date" }}</div>
+          <div class="result">{{ currentDate | date }}</div>
+        </div>
+
+        <div class="example">
+          <div class="code">{{ 'currentDate | date:"short"' }}</div>
+          <div class="result">{{ currentDate | date : "short" }}</div>
+        </div>
+
+        <div class="example">
+          <div class="code">{{ 'currentDate | date:"fullDate"' }}</div>
+          <div class="result">{{ currentDate | date : "fullDate" }}</div>
+        </div>
+
+        <div class="example">
+          <div class="code">{{ 'currentDate | date:"MM/dd/yyyy h:mm a"' }}</div>
+          <div class="result">
+            {{ currentDate | date : "MM/dd/yyyy h:mm a" }}
+          </div>
+        </div>
+      </div>
+
+      <div class="example-container">
+        <h3>JSON and Async Pipes</h3>
+        <div class="example">
+          <div class="code">{{ "products[0] | json" }}</div>
+          <div class="result code-block">{{ products[0] | json }}</div>
+        </div>
+        <p>
+          Note: The async pipe is used with Observables and Promises to
+          automatically handle subscriptions and updates.
+        </p>
+      </div>
+    </section>
+
+    <!-- Custom TitleCase Pipe -->
+    <section class="section">
+      <h2>2. Simple Custom Pipe (TitleCase)</h2>
+      <p class="description">
+        A custom pipe that improves upon the built-in titlecase pipe by ignoring
+        small words (like 'the', 'and', etc.) except at the beginning of the
+        title.
+      </p>
+
+      <div class="example-container">
+        <h3>Implementation</h3>
+        <div class="code-block">
+          <code [innerText]="titleCasePipe"></code>
+        </div>
+
+        <h3>Examples</h3>
+        <div class="example">
+          <div class="input-group">
+            <label for="titleInput">Enter text:</label>
+            <input id="titleInput" [(ngModel)]="message" type="text" />
+          </div>
+
+          <div class="results">
+            <div class="example">
+              <div class="code">{{ "Built-in: message | titlecase" }}</div>
+              <div class="result">{{ message | titlecase }}</div>
+            </div>
+
+            <div class="example">
+              <div class="code">{{ "Custom: message | appTitleCase" }}</div>
+              <div class="result">{{ message | appTitleCase }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Transform Pipe -->
+    <section class="section">
+      <h2>3. Transform Pipe with Parameters</h2>
+      <p class="description">
+        A pipe that transforms a price by applying a discount and formatting
+        options.
+      </p>
+
+      <div class="example-container">
+        <h3>Implementation</h3>
+        <div class="code-block">
+          <code [innerText]="trasformPipe"> </code>
+        </div>
+
+        <h3>Examples</h3>
+        <div class="example">
+          <div class="input-group">
+            <label for="priceInput">Enter price:</label>
+            <input id="priceInput" [(ngModel)]="price" type="number" />
+          </div>
+
+          <div class="results">
+            <div class="example">
+              <div class="code">{{ "price | priceTransform" }}</div>
+              <div class="result">{{ price | priceTransform }}</div>
+            </div>
+
+            <div class="example">
+              <div class="code">
+                {{ "price | priceTransform:0.2" }} (20% discount)
+              </div>
+              <div class="result">{{ price | priceTransform : 0.2 }}</div>
+            </div>
+
+            <div class="example">
+              <div class="code">
+                {{ "price | priceTransform:0.1:false" }} (10% discount, no
+                currency)
+              </div>
+              <div class="result">
+                {{ price | priceTransform : 0.1 : false }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filter Pipe -->
+    <section class="section">
+      <h2>4. Filter Pipe</h2>
+      <p class="description">
+        A pipe that filters an array of products based on search criteria.
+      </p>
+
+      <div class="example-container">
+        <h3>Implementation</h3>
+        <div class="code-block">
+          <code [innerText]="filterPipe"></code>
+        </div>
+
+        <h3>Filter Demo</h3>
+        <div class="filter-controls">
+          <div class="input-group">
+            <label for="searchInput">Search:</label>
+            <input
+              id="searchInput"
+              [(ngModel)]="searchTerm"
+              placeholder="Search products..."
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="categorySelect">Category:</label>
+            <select id="categorySelect" [(ngModel)]="selectedCategory">
+              <option value="">All Categories</option>
+              <option *ngFor="let category of categories" [value]="category">
+                {{ category | titlecase }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="products-grid">
+          <div
+            class="product-card"
+            *ngFor="
+              let product of products
+                | filterProduct : searchTerm : selectedCategory
+            "
+          >
+            <h4>{{ product.name | appTitleCase }}</h4>
+            <p class="price">{{ product.price | priceTransform }}</p>
+            <p class="discount-price">
+              {{ product.price | priceTransform : 0.1 }} (10% off)
+            </p>
+            <p class="category">Category: {{ product.category | titlecase }}</p>
+            <p
+              class="stock"
+              [class.in-stock]="product.inStock"
+              [class.out-of-stock]="!product.inStock"
+            >
+              {{ product.inStock ? "In Stock" : "Out of Stock" }}
+            </p>
+            <p class="date">
+              Released: {{ product.releaseDate | date : "mediumDate" }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pipe Chaining -->
+    <section class="section">
+      <h2>5. Pipe Chaining</h2>
+      <p class="description">
+        Pipes can be chained together to perform multiple transformations in
+        sequence.
+      </p>
+
+      <div class="example-container">
+        <h3>Examples</h3>
+        <div class="example">
+          <div class="code">{{ "longText | slice:0:30 | uppercase" }}</div>
+          <div class="result">{{ longText | slice : 0 : 30 | uppercase }}</div>
+        </div>
+
+        <div class="example">
+          <div class="code">{{ "price | currency | lowercase" }}</div>
+          <div class="result">{{ price | currency | lowercase }}</div>
+        </div>
+
+        <div class="example">
+          <div class="code">
+            {{ "products[0].name | appTitleCase | slice:0:10" }}
+          </div>
+          <div class="result">
+            {{ products[0].name | appTitleCase | slice : 0 : 10 }}...
+          </div>
+        </div>
+
+        <div class="example">
+          <div class="code">
+            {{ 'currentDate | date:"MMM dd, yyyy" | uppercase' }}
+          </div>
+          <div class="result">
+            {{ currentDate | date : "MMM dd, yyyy" | uppercase }}
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

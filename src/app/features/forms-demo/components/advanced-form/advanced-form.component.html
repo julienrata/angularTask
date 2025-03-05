@@ -1,0 +1,102 @@
+<div class="container">
+  <h1>Advanced Form Validation Examples</h1>
+
+  <section>
+    <h2>Custom Validators Example</h2>
+    <form [formGroup]="advancedForm" (ngSubmit)="onAdvancedFormSubmit()">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input id="username" formControlName="username" class="form-control">
+        <div *ngIf="f['username']?.invalid && (f['username']?.dirty || f['username']?.touched)" class="error-message">
+          <div *ngIf="f['username']?.errors?.['required']">Username is required</div>
+          <div *ngIf="f['username']?.errors?.['minlength']">Username must be at least 4 characters</div>
+          <div *ngIf="f['username']?.errors?.['forbiddenValue']">This username is not allowed</div>
+        </div>
+        <small class="form-hint">Try entering: admin, root, superuser, administrator</small>
+      </div>
+
+      <div class="form-group">
+        <label for="website">Website URL</label>
+        <input id="website" formControlName="website" class="form-control" placeholder="https://example.com">
+        <div *ngIf="f['website']?.invalid && (f['website']?.dirty || f['website']?.touched)" class="error-message">
+          <div *ngIf="f['website']?.errors?.['required']">Website is required</div>
+          <div *ngIf="f['website']?.errors?.['invalidUrl']">Please enter a valid URL (include http:// or https://)</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="dateOfBirth">Date of Birth</label>
+        <input id="dateOfBirth" type="date" formControlName="dateOfBirth" class="form-control" [max]="today">
+        <div *ngIf="f['dateOfBirth']?.invalid && (f['dateOfBirth']?.dirty || f['dateOfBirth']?.touched)" class="error-message">
+          <div *ngIf="f['dateOfBirth']?.errors?.['required']">Date of birth is required</div>
+          <div *ngIf="f['dateOfBirth']?.errors?.['minAge']">
+            You must be at least {{f['dateOfBirth'].errors?.['minAge']?.required}} years old 
+            (current age: {{f['dateOfBirth'].errors?.['minAge']?.actual}})
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-secondary" (click)="resetAdvancedForm()">Reset</button>
+      </div>
+
+      <div class="form-value">
+        <h4>Form Value:</h4>
+        <pre>{{ advancedForm.value | json }}</pre>
+        <h4>Form Status:</h4>
+        <p>Valid: {{ advancedForm.valid }}</p>
+      </div>
+    </form>
+  </section>
+
+  <section>
+    <h2>Password Validation with Field Matching</h2>
+    <form [formGroup]="registrationForm" (ngSubmit)="onRegistrationFormSubmit()">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" type="email" formControlName="email" class="form-control">
+        <div *ngIf="r['email']?.invalid && (r['email']?.dirty || r['email']?.touched)" class="error-message">
+          <div *ngIf="r['email']?.errors?.['required']">Email is required</div>
+          <div *ngIf="r['email']?.errors?.['email']">Please enter a valid email address</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" type="password" formControlName="password" class="form-control">
+        <div *ngIf="r['password']?.invalid && (r['password']?.dirty || r['password']?.touched)" class="error-message">
+          <div *ngIf="r['password']?.errors?.['required']">Password is required</div>
+          <div *ngIf="r['password']?.errors?.['passwordStrength']">
+            <div *ngIf="r['password']?.errors?.['passwordStrength']?.minLength">Password must be at least 8 characters</div>
+            <div *ngIf="r['password']?.errors?.['passwordStrength']?.uppercase">Password must contain at least one uppercase letter</div>
+            <div *ngIf="r['password']?.errors?.['passwordStrength']?.lowercase">Password must contain at least one lowercase letter</div>
+            <div *ngIf="r['password']?.errors?.['passwordStrength']?.digit">Password must contain at least one number</div>
+            <div *ngIf="r['password']?.errors?.['passwordStrength']?.specialChar">Password must contain at least one special character</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input id="confirmPassword" type="password" formControlName="confirmPassword" class="form-control">
+        <div *ngIf="r['confirmPassword']?.invalid && (r['confirmPassword']?.dirty || r['confirmPassword']?.touched)" class="error-message">
+          <div *ngIf="r['confirmPassword']?.errors?.['required']">Please confirm your password</div>
+          <div *ngIf="r['confirmPassword']?.errors?.['mustMatch']">Passwords must match</div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Register</button>
+        <button type="button" class="btn btn-secondary" (click)="resetRegistrationForm()">Reset</button>
+      </div>
+
+      <div class="form-value">
+        <h4>Form Value:</h4>
+        <pre>{{ registrationForm.value | json }}</pre>
+        <h4>Form Status:</h4>
+        <p>Valid: {{ registrationForm.valid }}</p>
+      </div>
+    </form>
+  </section>
+</div>
